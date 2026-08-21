@@ -148,60 +148,60 @@
           <p class="section-intro">Elegí el servicio que mejor se adapta a tu estilo y a lo que buscás lograr.</p>
         </div>
 
-        <div class="services-grid reveal-up delay-1">
-          <div class="service-card" data-service="manicura">
+        <div class="services-grid reveal-up delay-1" id="services-cards-container">
+          <div class="service-card" data-service="manicura" data-service-id="1">
             <div class="service-icon-wrap">
               <span class="service-emoji" aria-hidden="true">💅</span>
             </div>
             <h3>Manicura</h3>
             <p>Limado, cutículas y esmaltado clásico para un look cuidado, prolijo y natural.</p>
-            <a href="#turnos" class="service-link">Reservar →</a>
+            <a href="#turnos" class="service-link book-service-btn" data-service-name="Manicura Clásica" data-service-id="1">Reservar →</a>
           </div>
 
-          <div class="service-card" data-service="semipermanente">
+          <div class="service-card" data-service="semipermanente" data-service-id="2">
             <div class="service-icon-wrap">
               <span class="service-emoji" aria-hidden="true">✨</span>
             </div>
             <h3>Esmaltado Semipermanente</h3>
             <p>Color brillante de larga duración que se mantiene impecable durante semanas.</p>
-            <a href="#turnos" class="service-link">Reservar →</a>
+            <a href="#turnos" class="service-link book-service-btn" data-service-name="Esmaltado Semipermanente" data-service-id="2">Reservar →</a>
           </div>
 
-          <div class="service-card service-card--featured" data-service="softgel">
+          <div class="service-card service-card--featured" data-service="softgel" data-service-id="3">
             <div class="service-badge">Popular</div>
             <div class="service-icon-wrap">
               <span class="service-emoji" aria-hidden="true">🌸</span>
             </div>
             <h3>Soft Gel</h3>
             <p>Extensiones ultralivianas y naturales de máxima resistencia. El método estrella de nuestro espacio.</p>
-            <a href="#turnos" class="service-link">Reservar →</a>
+            <a href="#turnos" class="service-link book-service-btn" data-service-name="Soft Gel" data-service-id="3">Reservar →</a>
           </div>
 
-          <div class="service-card" data-service="kapping">
+          <div class="service-card" data-service="kapping" data-service-id="4">
             <div class="service-icon-wrap">
               <span class="service-emoji" aria-hidden="true">💎</span>
             </div>
             <h3>Kapping</h3>
             <p>Recubrimiento protector que fortalece la uña natural, evitando quiebres y ayudándola a crecer sana.</p>
-            <a href="#turnos" class="service-link">Reservar →</a>
+            <a href="#turnos" class="service-link book-service-btn" data-service-name="Kapping" data-service-id="4">Reservar →</a>
           </div>
 
-          <div class="service-card" data-service="nailart">
+          <div class="service-card" data-service="nailart" data-service-id="5">
             <div class="service-icon-wrap">
               <span class="service-emoji" aria-hidden="true">🎨</span>
             </div>
             <h3>Nail Art</h3>
             <p>Diseños exclusivos, desde detalles florales y foil dorado hasta degradados modernos y pedrería.</p>
-            <a href="#turnos" class="service-link">Reservar →</a>
+            <a href="#turnos" class="service-link book-service-btn" data-service-name="Nail Art Exclusivo" data-service-id="5">Reservar →</a>
           </div>
 
-          <div class="service-card" data-service="mantenimiento">
+          <div class="service-card" data-service="mantenimiento" data-service-id="6">
             <div class="service-icon-wrap">
               <span class="service-emoji" aria-hidden="true">🔄</span>
             </div>
             <h3>Retiro / Mantenimiento</h3>
             <p>Remoción segura que protege la salud de tus uñas y mantenimiento periódico para conservar su brillo.</p>
-            <a href="#turnos" class="service-link">Reservar →</a>
+            <a href="#turnos" class="service-link book-service-btn" data-service-name="Retiro / Mantenimiento" data-service-id="6">Reservar →</a>
           </div>
         </div>
       </div>
@@ -487,20 +487,30 @@
     </section>
 
     <!-- =========================================
-         09 — RESERVAR TURNO (CTA FINAL)
+         09 — RESERVAR TURNO (CTA FINAL CON MOTOR DINÁMICO)
     ========================================== -->
     <section class="section turnos" id="turnos">
       <div class="container">
         <div class="section-header reveal-up">
           <p class="section-label">Reservá tu turno</p>
           <h2 class="section-title">Tu próximo momento<br />empieza acá</h2>
-          <p class="section-intro">Elegí el servicio, encontrá el horario que mejor te quede y dejá que nos ocupemos del resto.</p>
+          <p class="section-intro">Elegí tu servicio, encontrá el horario disponible que mejor te quede y dejá que nos ocupemos del resto.</p>
         </div>
 
         <form class="booking-form reveal-up delay-1" id="booking-form" novalidate>
+          
+          <!-- Selector Dinámico de Servicio con Duración y Precio -->
+          <div class="form-group form-group--full">
+            <label for="servicio-select" class="form-label">Servicio deseado *</label>
+            <select id="servicio-select" name="servicio_id" class="form-input form-select" required>
+              <option value="" disabled selected>Cargando servicios disponibles...</option>
+            </select>
+            <span class="form-error" id="error-servicio-select"></span>
+          </div>
+
           <div class="form-row">
             <div class="form-group">
-              <label for="nombre" class="form-label">Nombre</label>
+              <label for="nombre" class="form-label">Nombre *</label>
               <input
                 type="text"
                 id="nombre"
@@ -516,7 +526,7 @@
             </div>
 
             <div class="form-group">
-              <label for="apellido" class="form-label">Apellido</label>
+              <label for="apellido" class="form-label">Apellido *</label>
               <input
                 type="text"
                 id="apellido"
@@ -534,7 +544,7 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label for="telefono" class="form-label">Teléfono</label>
+              <label for="telefono" class="form-label">Teléfono / WhatsApp *</label>
               <input
                 type="tel"
                 id="telefono"
@@ -549,14 +559,14 @@
             </div>
 
             <div class="form-group">
-              <label for="fecha-display" class="form-label">Fecha del turno</label>
+              <label for="fecha-display" class="form-label">Fecha y Horario del turno *</label>
               <div class="date-picker-wrap">
                 <input
                   type="text"
                   id="fecha-display"
                   name="fecha-display"
                   class="form-input date-display"
-                  placeholder="08/15/2026"
+                  placeholder="Seleccionar en calendario..."
                   readonly
                   required
                   aria-haspopup="dialog"
@@ -571,9 +581,10 @@
                   </svg>
                 </button>
                 <input type="hidden" id="fecha-value" name="fecha" />
+                <input type="hidden" id="hora-value" name="hora_inicio" />
                 <span class="form-error" id="error-fecha"></span>
 
-                <!-- Popup interactivo de Calendario y Horarios -->
+                <!-- Popup interactivo de Calendario con Disponibilidad en Tiempo Real -->
                 <div class="calendar-popup" id="calendar-popup" role="dialog" aria-label="Calendario de turnos" hidden>
                   <div class="calendar-header">
                     <button type="button" class="cal-nav-btn" id="cal-prev-month" aria-label="Mes anterior">‹</button>
@@ -588,17 +599,12 @@
                   <div class="calendar-days" id="calendar-days"></div>
                   
                   <div class="time-picker">
-                    <p class="time-label">Horarios disponibles</p>
+                    <div class="time-header-wrap">
+                      <p class="time-label" id="time-picker-title">Horarios disponibles</p>
+                      <span class="time-status-badge" id="time-picker-status"></span>
+                    </div>
                     <div class="time-slots" id="time-slots">
-                      <button type="button" class="time-slot" data-time="09:00">09:00</button>
-                      <button type="button" class="time-slot" data-time="10:00">10:00</button>
-                      <button type="button" class="time-slot" data-time="11:00">11:00</button>
-                      <button type="button" class="time-slot" data-time="12:00">12:00</button>
-                      <button type="button" class="time-slot" data-time="14:00">14:00</button>
-                      <button type="button" class="time-slot" data-time="15:00">15:00</button>
-                      <button type="button" class="time-slot" data-time="16:00">16:00</button>
-                      <button type="button" class="time-slot" data-time="17:00">17:00</button>
-                      <button type="button" class="time-slot" data-time="18:00">18:00</button>
+                      <!-- Renderizado dinámico según el motor de disponibilidad del backend -->
                     </div>
                   </div>
                 </div>
@@ -606,17 +612,16 @@
             </div>
           </div>
 
-          <!-- Cuadro de texto ampliado y visible con 3 filas para celulares y PC -->
+          <!-- Cuadro de Observaciones o Tipo de Trabajo Deseado (50 caracteres) -->
           <div class="form-group form-group--full">
-            <label for="servicio" class="form-label">Tipo de servicio</label>
+            <label for="servicio" class="form-label">Detalles del diseño o trabajo deseado</label>
             <textarea
               id="servicio"
               name="servicio"
               class="form-input form-textarea"
-              rows="3"
+              rows="2"
               placeholder="Soft Gel / Esmaltado / Semipermanente / Etc."
               maxlength="50"
-              required
             ></textarea>
             <span class="form-char-count" id="servicio-count">0/50</span>
             <span class="form-error" id="error-servicio"></span>
@@ -638,16 +643,16 @@
           <div class="form-feedback form-feedback--success" id="form-success" hidden role="alert">
             <span class="feedback-icon" aria-hidden="true">✓</span>
             <div>
-              <strong>¡Tu turno fue reservado con éxito!</strong>
-              <p>Te contactaremos a la brevedad por WhatsApp para confirmar todos los detalles. ¡Gracias por elegirnos!</p>
+              <strong id="success-title">¡Tu turno fue reservado con éxito!</strong>
+              <p id="success-desc">Te contactaremos a la brevedad por WhatsApp para confirmar todos los detalles. ¡Gracias por elegirnos!</p>
             </div>
           </div>
           
           <div class="form-feedback form-feedback--error" id="form-error" hidden role="alert">
             <span class="feedback-icon" aria-hidden="true">!</span>
             <div>
-              <strong>Algo salió mal</strong>
-              <p>Por favor revisá los campos e intentá nuevamente, o comunicate con nosotros por WhatsApp.</p>
+              <strong id="error-title">Algo salió mal</strong>
+              <p id="error-desc">Por favor revisá los campos e intentá nuevamente, o comunicate con nosotros por WhatsApp.</p>
             </div>
           </div>
         </form>
